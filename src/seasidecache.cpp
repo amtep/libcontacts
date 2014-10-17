@@ -2661,7 +2661,9 @@ void SeasideCache::addressRequestStateChanged(QContactAbstractRequest::State sta
     // results are complete, so record them in the cache
     QContactFetchRequest *request = static_cast<QContactFetchRequest *>(sender());
     QSet<QContactDetail::DetailType> queryDetailTypes = detailTypesHint(request->fetchHint()).toSet();
+    qDebug() << "Applying resolved contacts at " << m_timer.elapsed() << "ms";
     applyContactUpdates(request->contacts(), queryDetailTypes);
+    qDebug() << "done at " << m_timer.elapsed() << "ms";
 
     // now figure out which address was being resolved and resolve it
     QList<ResolveData>::iterator it = instancePtr->m_resolveAddresses.begin();
