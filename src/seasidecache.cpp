@@ -2668,6 +2668,7 @@ void SeasideCache::addressRequestStateChanged(QContactAbstractRequest::State sta
     for ( ; it != instancePtr->m_resolveAddresses.end(); ++it) {
         if (request == it->fetchRequest) {
             ResolveData data(*it);
+            qDebug() << "Resolving" << data.first << data.second << "at" << m_timer.elapsed() << "ms";
             if (data.first == QString()) {
                 // We have now queried this phone number
                 m_resolvedPhoneNumbers.insert(minimizePhoneNumber(data.second));
